@@ -120,9 +120,10 @@ class FileProcess:
         logging.info("File processing started. It will get some time.")
         progress = ProgressBar(len(zf.namelist()), fmt=ProgressBar.FULL)
         for idx, name in enumerate(zf.namelist()):
-            text = zf.read(name).decode()
-            file_item = FileItem(text, name, idx)
-            self.files.append(file_item)
+            if "Friends" in name:
+                text = zf.read(name).decode()
+                file_item = FileItem(text, name, idx)
+                self.files.append(file_item)
             progress.current += 1
             progress()
         progress.done()
