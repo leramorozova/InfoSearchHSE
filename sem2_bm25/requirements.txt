@@ -1,0 +1,6 @@
+nltk
+pymystem3
+pandas
+tqdm
+numpy
+sklearn
