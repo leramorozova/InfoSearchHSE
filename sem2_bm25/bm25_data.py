@@ -23,9 +23,9 @@ root.addHandler(handler)
 logging.info("Setting up projet environment...")
 
 PROJECT_ROOT = "."
-CORPUS_SIZE = 2000
+CORPUS_SIZE = 38000
 logging.info("Make sure that you have internet connection to download data for vectorization.")
-logging.info("Otherwise this program is tp freeze!")
+logging.info("Otherwise this program is to freeze!")
 nltk.download('punkt')
 morph = Mystem()
 
@@ -131,7 +131,7 @@ class BM25(BuildingTfIDF):
     @staticmethod
     def get_max_doc(vector):
         return set(reduce(lambda x, y: x + y,
-                      [np.argwhere(vector == top).flatten().tolist() for top in np.sort(vector)[-10:]]))
+                      [np.argwhere(vector == top).flatten().tolist() for top in np.sort(vector)[-5:]]))
 
     @staticmethod
     def compute_metric(responses):
@@ -159,7 +159,8 @@ class BM25(BuildingTfIDF):
     def is_true_answer_in_response(self, question_id, response):
         return question_id in self.get_max_doc(response)
 
-    def generate_responce(self, bm_func, b=0.75, k=2, task_text="", query=None):
+    def generate_responce(self, bm_func, b=0.75, k=2, task_text="", metrics=False, query=None):
+        start_time = time.time()
         logging.info("\n" + task_text)
         if query:
             query = " ".join([morph.lemmatize(token)[0] for token in nltk.word_tokenize(query)])
@@ -170,11 +171,11 @@ class BM25(BuildingTfIDF):
                 logging.info("Documents with max metrics:")
                 logging.info(responce)
         else:
-            start_time = time.time()
-            result = self.compute_metric([self.is_true_answer_in_response(q, bm_func(self.corpus.questions[q], b, k))
-                                         for q in tqdm(range(self.doc_count))])
-            logging.info(f"\nRequest processing takes {time.time() - start_time}")
-            logging.info(f"Result metric: {result}\n\n")
+            if metrics:
+                result = self.compute_metric([self.is_true_answer_in_response(q, bm_func(self.corpus.questions[q], b, k))
+                                             for q in tqdm(range(self.doc_count))])
+                logging.info(f"\nResult metric: {result}")
+        logging.info(f"\nRequest processing takes {time.time() - start_time}\n\n")
 
 
 if __name__ == "__main__":
@@ -182,7 +183,7 @@ if __name__ == "__main__":
     logging.info("\nCompare iterative and matrix search")
     bm25.generate_responce(bm25.bm25_iter, task_text="Testing iterative version")
     bm25.generate_responce(bm25.bm25_matrix, task_text="Testing matrix version")
-    bm25.generate_responce(bm25.bm25_iter, b=0.75, task_text="BM25")
-    bm25.generate_responce(bm25.bm25_iter, b=0, task_text="BM15")
-    bm25.generate_responce(bm25.bm25_iter, b=1, task_text="BM11")
+    bm25.generate_responce(bm25.bm25_iter, b=0.75, task_text="BM25", metrics=True)
+    bm25.generate_responce(bm25.bm25_iter, b=0, task_text="BM15", metrics=True)
+    bm25.generate_responce(bm25.bm25_iter, b=1, task_text="BM11", metrics=True)
     bm25.generate_responce(bm25.bm25_iter, b=0.75, task_text="Search X-mas holiday", query="рождественские каникулы")
