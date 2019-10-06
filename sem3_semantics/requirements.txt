@@ -1,0 +1,9 @@
+tensorflow==1.4.0
+tqdm
+gensim
+numpy
+scipy
+sklearn
+nltk
+pymystem3
+pandas
