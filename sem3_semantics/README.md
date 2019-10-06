@@ -1,5 +1,7 @@
 ##SEMANTIC SEARCH
 
+Sorry if this project seems you imperfect! I just had too little time to make it better :(
+
 Before using the program, please:
 1. Download `simple_elmo.zip` from course chat and put files in `elmo` directory
 in project root.
