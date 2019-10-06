@@ -1,4 +1,4 @@
-##SEMANTIC SEARCH
+## SEMANTIC SEARCH
 
 Sorry if this project seems you imperfect! I just had too little time to make it better :(
 
