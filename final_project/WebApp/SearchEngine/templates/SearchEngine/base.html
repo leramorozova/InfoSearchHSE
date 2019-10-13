@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+	.container dt,.container dd {
+  	width:auto;
+  	margin-left:auto;
+  	display:inline-block;
+	}
+	.example {
+            padding: 1px; /* Поля */
+            white-space: pre;
+	    table-layout: fixed;
+	 }
+	blockquote {
+  	padding: 2px 20px;
+  	margin: 0 0 20px;
+  	font-size: 17.5px;
+  	/* изменить цвет полоски */
+  	border-left: 5px solid #808080; /* 5px solid #eee; */
+  	/* изменит цвет текста */
+  	color: #808080;
+	}
+	/* Базовый контейнер табов */
+	.tabs {
+	height: 90px;
+	min-width: 320px;
+	max-width: 1200px;
+	padding: 0px;
+	margin: 0 auto;
+	}
+	/* Стили секций с содержанием */
+	.tabs>section {
+	display: none;
+	padding: 15px;
+	background: #fff;
+	border: 1px solid #ddd;
+	}
+	.tabs>section>p {
+	margin: 0 0 5px;
+	line-height: 1.5;
+	color: #383838;
+	/* прикрутим анимацию */
+	-webkit-animation-duration: 0s;
+	animation-duration: 0s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+	}
+	/* Описываем анимацию свойства opacity */
+ 
+	@-webkit-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+	}
+	@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+	}
+	/* Прячем чекбоксы */
+	.tabs>input {
+	display: none;
+	position: absolute;
+	}
+	/* Стили переключателей вкладок (табов) */
+	.tabs>label {
+	display: inline-block;
+	margin: 0 0 -1px;
+	padding: 10px 25px;
+	height: 40px;
+	font-weight: 600;
+	text-align: center;
+	color: #aaa;
+	border: 0px solid #ddd;
+	border-width: 1px 1px 1px 1px;
+	background: #f1f1f1;
+	border-radius: 3px 3px 0 0;
+	}
+	
+	/* Изменения стиля переключателей вкладок при наведении */
+ 
+	.tabs>label:hover {
+	color: #888;
+	cursor: pointer;
+	}
+	/* Стили для активной вкладки */
+	.tabs>input:checked+label {
+	color: #555;
+	border-top: 1px solid #545454;
+	border-bottom: 1px solid #fff;
+	background: #fff;
+	}
+	/* Активация секций с помощью псевдокласса :checked */
+	#lemma:checked~#content-lemma, #cit:checked~#content-cit, #date:checked~#content-date, #source:checked~#content-source {
+	display: block;
+	}
+	/* Убираем текст с переключателей 
+	* и оставляем иконки на малых экранах
+	*/
+ 
+	@media screen and (max-width: 680px) {
+	.tabs>label {
+		font-size: 0;
+	}
+	.tabs>label:before {
+		margin: 0;
+		font-size: 18px;
+	}
+	}
+	/* Изменяем внутренние отступы 
+	*  переключателей для малых экранов
+	*/
+	@media screen and (max-width: 400px) {
+	.tabs>label {
+		padding: 15px;
+	}
+	}
+	mark {
+   	background: #FAEE9E;
+    	padding: 1 4px;
+   	}
+	.b1 {
+    	background: #545454; /* Синий цвет фона */ 
+	border: 1px solid #545454;
+	width: 200px;
+    	color: white; /* Белые буквы */ 
+   	}
+	</style>
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+    <title>SearchEngine</title>
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark mb-4">
+  <a class="navbar-brand" href="/"><b>SearchEngine</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+	</nav>
+
+
+<main role="main" class="flex-shrink-0">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="container">
+<br>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+<!-- /container -->
+
+</main>
+
+
+<div id="footer">
+<hr>
+    <text><center><font size="2">Информационный поиск, Школа Лингвистики, НИУ ВШЭ, 2019</font></center></text>
+    <text><center><font size="2">Валерия Морозова, БКЛ-162</font></center></text>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+Django==2.2.1
+sqlite3
+nltk
+scipy
+pymystem3
+numpy
+gensim
+tqdm
+sklearn
+tensorflow==1.4.0
+# to run: pip install -r requirements.txt

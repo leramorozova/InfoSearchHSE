@@ -1,0 +1,29 @@
+{% extends 'SearchEngine/base.html' %}
+{% block content %}
+	<br>
+      <h3 class="mt-5">{{ lemma }}</h3>
+	{% for item in response %}
+		<hr>
+		<p><b>Метрика:</b> {{ item.metric }} <br>
+			<small class="text-muted"><b>Текст документа:</b> {{ item.doc_text }}</small></p>
+	{% endfor %}
+<hr>
+<br>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+	{% if response.has_previous %}
+	<li class="page-item"><a class="page-link" href="?tabs={{ search_type }}&lemma={{ lemma }}&page={{ response.previous_page_number }}"><<</a></li>
+	{% else %}
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><<</a></li>
+        {% endif %}
+    	<li class="page-item"><a class="page-link" colour="black" style="color: #000000" tabindex="-1">страница {{ response.number }} из {{ response.paginator.num_pages }}</a></li>
+	{% if response.has_next %}
+      	<li class="page-item"><a class="page-link" href="?tabs={{ search_type }}&lemma={{ lemma }}&page={{ response.next_page_number }}">>></a></li>
+	{% else %}
+	<li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">>></a></li>
+        {% endif %}
+  </ul>
+</nav>
+
+{% endblock %}

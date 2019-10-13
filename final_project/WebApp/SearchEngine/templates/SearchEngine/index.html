@@ -1,0 +1,59 @@
+{% extends 'SearchEngine/base.html' %}
+
+{% block content %}
+<br>
+      <center><h2 class="mt-5">Ultimate Web-Search Engine</h2></center>
+	<br>
+<br>
+<br>
+	<form action="/search_result" method="get" required>
+	<div class="tabs">
+    	<input id="lemma" type="radio" name="tabs" value="tfidf" checked>
+    	<label for="lemma" title="Поиск по TF-IDF матрице">TF-IDF</label>
+
+    	<input id="cit" type="radio" name="tabs" value="cit">
+    	<label for="cit" title="Поиск по BM25 матрице">BM25</label>
+
+    	<input id="date" type="radio" name="tabs" value="date">
+    	<label for="date" title="Поиск по FastText эмбеддингам">FastText</label>
+
+    	<input id="source" type="radio" name="tabs" value="source">
+    	<label for="source" title="Поиск по Elmo эмбеддингам">Elmo</label>
+
+    	<section id="content-lemma">
+        <p>
+		<small class="text-muted">Поиск по TF-IDF матрице.</small>
+        </p>
+    	</section>
+    	<section id="content-cit">
+        <p>
+		<small class="text-muted">Поиск по BM25 матрице.</small>
+        </p>
+    	</section>
+    	<section id="content-date">
+        <p>
+		<small class="text-muted">Поиск по FastText эмбеддингам.</small>
+	</p>
+    	</section>
+    	<section id="content-source">
+        <p>
+		<small class="text-muted">Поиск по Elmo эмбеддингам.</small>
+        </p>
+    	</section>
+</div>
+  	<div class="form-group">
+    	<input type="text" name="lemma" class="form-control" placeholder="Введите слово...">
+  	</div>
+	<br>
+      	<center><button class="btn btn-lg btn-primary b1" type="submit">Поиск</button></center>
+	</form>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
