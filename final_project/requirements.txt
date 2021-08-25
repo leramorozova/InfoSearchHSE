@@ -7,5 +7,5 @@ numpy
 gensim
 tqdm
 sklearn
-tensorflow==1.4.0
+tensorflow==2.5.1
 # to run: pip install -r requirements.txt
